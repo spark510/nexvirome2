@@ -1,0 +1,9 @@
+accessions: tests/fixtures/accessions.txt
+snapshot: .validation/snapshot
+panel: .validation/panel
+design: tests/fixtures/design
+experiment_config: configs/experiments/pilot.yaml
+runs: .validation/runs
+report: .validation/report
+threads: 4
+memory_gb: 16

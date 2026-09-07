@@ -1,0 +1,4 @@
+min_segment_bp: 150
+min_identity: 99
+min_contig_length: 500
+threads: 4

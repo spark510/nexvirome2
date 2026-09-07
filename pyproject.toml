@@ -1,0 +1,23 @@
+[project]
+name = "nexvirome2"
+version = "0.1.0"
+description = "Experiments on ambiguity-aware short-read viral assembly"
+requires-python = ">=3.10"
+dependencies = ["PyYAML>=6", "pandas>=2", "matplotlib>=3.8"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+extensions = ["scikit-learn>=1.4", "biopython>=1.83"]
+
+[project.scripts]
+nexvirome2 = "nexvirome2.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

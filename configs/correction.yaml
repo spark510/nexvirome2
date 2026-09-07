@@ -1,0 +1,9 @@
+threads: 4
+max_repeat_nodes: 20
+anchor_context_bp: 600
+max_fragment_bp: 600
+max_local_paths: 128
+min_fragments: 3
+alternative_fraction: 0.9
+score_margin: 1
+random_control_seed: 20260905

@@ -1,0 +1,6 @@
+k: 5
+rank: species
+policy:
+  version: fixture-v1
+  rank: species
+  conditions: {k: 5, scope: fixture}

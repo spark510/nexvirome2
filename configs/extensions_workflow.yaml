@@ -1,0 +1,17 @@
+# All paths are relative to the repository root, except sample read paths (relative to TSV).
+output: runs/extensions
+contigs: data/common/contigs.fasta
+graph: data/common/assembly_graph_with_scaffolds.gfa
+paths: data/common/contigs.paths
+samples: configs/samples.example.tsv
+r1: data/common/reads_R1.fastq.gz
+r2: data/common/reads_R2.fastq.gz
+sequence_database: data/databases/proteins/db
+structure_database: data/databases/pdb/db
+prostt5_model: data/databases/prostt5/db
+target_metadata: configs/targets.example.tsv
+threads: 4
+# True selects verified repeat junction neighborhoods. No eligible junctions => explicit failure.
+local_only: false
+# Recommended: trusted ORF calls. Omit to use six-frame stop-to-stop candidates.
+# orf_coordinates: data/common/orfs.tsv

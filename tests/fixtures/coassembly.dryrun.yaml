@@ -1,0 +1,6 @@
+# DAG fixture only: placeholder read files are FASTA, not valid paired FASTQs.
+samples: tests/fixtures/coassembly.samples.tsv
+membership: tests/fixtures/coassembly.membership.tsv
+output: runs/coassembly-dryrun
+assemblers: [metaspades, megahit]
+threads: 1

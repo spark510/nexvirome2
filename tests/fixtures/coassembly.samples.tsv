@@ -1,0 +1,3 @@
+sample	biological_sample	library	r1	r2
+s1	b1	PE150	masking.queries.fasta	masking.queries.fasta
+s2	b2	PE150	masking.queries.fasta	masking.queries.fasta

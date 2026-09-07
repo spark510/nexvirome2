@@ -1,0 +1,4 @@
+sample	biological_sample	r1	r2
+library_a	sample_a	../data/reads/a_R1.fastq.gz	../data/reads/a_R2.fastq.gz
+library_b	sample_b	../data/reads/b_R1.fastq.gz	../data/reads/b_R2.fastq.gz
+library_c	sample_c	../data/reads/c_R1.fastq.gz	../data/reads/c_R2.fastq.gz

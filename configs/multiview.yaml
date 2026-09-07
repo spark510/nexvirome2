@@ -1,0 +1,8 @@
+rank: 2
+seeds: [17, 29, 43]
+max_iter: 2000
+tolerance: 0.000001
+min_stability: 0.85
+min_loading: 0.7
+# Keys must match feature blocks in the input; unspecified blocks have weight 1.
+block_weights: {}

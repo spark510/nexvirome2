@@ -1,0 +1,9 @@
+accessions: data/refseq_accessions.txt
+snapshot: data/references/refseq_viral/snapshot
+panel: data/panels/pilot
+design: data/designs/pilot
+experiment_config: configs/experiments/pilot.yaml
+runs: runs/pilot
+report: reports/pilot
+threads: 4
+memory_gb: 16

@@ -1,0 +1,1 @@
+{"experiments":{"dryrun":{"sources":"tests/fixtures/design/dryrun.sources.json","seed":42,"partition":"development"}}}

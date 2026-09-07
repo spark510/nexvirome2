@@ -1,0 +1,24 @@
+# Compatibility entry point. Prefer root environment.yml; run from repository root.
+name: nexvirome2
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools>=68
+  - wheel
+  - pyyaml>=6
+  - pandas>=2
+  - matplotlib-base>=3.8
+  - pytest>=8
+  - snakemake-minimal>=8
+  - spades>=4
+  - megahit=1.2.9
+  - art
+  - blast>=2.15
+  - bowtie2>=2.5
+  - samtools>=1.19
+  - pip:
+      - -e ..

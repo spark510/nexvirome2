@@ -1,0 +1,8 @@
+rank: 2
+max_rank: 6
+rank_penalty: 0.02
+seeds: [17, 29, 43]
+max_iter: 2000
+min_stability: 0.85
+min_loading: 0.7
+min_change: 0.5

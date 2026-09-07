@@ -1,0 +1,20 @@
+# Exact-seed diagnostic settings, not an empirically optimized NexVirome policy.
+k: 31
+rank: species
+min_score: 1
+competitive_fraction: 1.0
+format: intervals
+mode: hard
+min_competing_taxa: 2
+include_low_complexity: false
+seed: 17
+policy:
+  version: shared-seed-v1
+  rank: species
+  conditions:
+    k: 31
+    scope: diagnostic
+conditions:
+  read_length: 150
+  library: genome-derived
+  backend: diagnostic_exact_seed

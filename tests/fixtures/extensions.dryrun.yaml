@@ -1,0 +1,14 @@
+# Dependency-graph fixture ONLY. These placeholders are not reads, graphs, or databases.
+output: runs/extensions-dryrun
+contigs: tests/fixtures/synthetic.fasta
+graph: tests/fixtures/synthetic.fasta
+paths: tests/fixtures/synthetic.fasta
+samples: tests/fixtures/extensions.samples.tsv
+r1: tests/fixtures/synthetic.fasta
+r2: tests/fixtures/synthetic.fasta
+sequence_database: tests/fixtures/synthetic.fasta
+structure_database: tests/fixtures/synthetic.fasta
+prostt5_model: tests/fixtures/synthetic.fasta
+target_metadata: configs/targets.example.tsv
+threads: 1
+local_only: true

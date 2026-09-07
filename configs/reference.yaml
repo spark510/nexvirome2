@@ -1,0 +1,8 @@
+# NCBI Virus VSSI RefSeq nucleotide view:
+# https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&SourceDB_s=RefSeq
+source: ncbi_refseq_viral
+source_query: "https://www.ncbi.nlm.nih.gov/labs/virus/vssi/#/virus?SeqType_s=Nucleotide&SourceDB_s=RefSeq"
+email: null
+# Supply the exported accession.version list with --accessions.
+# Set the dated output directory in configs/workflow.yaml or --output.
+# Acquisition is always unfiltered; panel selection has its own configuration.

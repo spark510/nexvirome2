@@ -1,0 +1,4 @@
+threads: 4
+memory_gb: 16
+spades: spades.py
+megahit: megahit

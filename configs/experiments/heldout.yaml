@@ -1,0 +1,7 @@
+partition: evaluation
+coverages: [50]
+ratios: [1]
+seeds: [20261001, 20261002, 20261003]
+# Fill with ALL accessions used for development, including the control pair.
+# The program refuses an evaluation design with an empty exclusion list.
+exclude_accessions: []

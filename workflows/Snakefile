@@ -1,0 +1,105 @@
+"""Main benchmark. Build the frozen design with reference.smk first."""
+import json
+from pathlib import Path
+
+configfile: 'configs/workflow.yaml'
+DESIGN = json.loads(Path(config['design'], 'experiments.json').read_text())['experiments']
+SAMPLES = sorted(DESIGN)
+ROOT = config['runs']
+METHODS = ['metaspades', 'megahit', 'corrected', 'random_control']
+
+rule all:
+    input:
+        config['report'] + '/metrics.tsv'
+
+rule simulate:
+    input:
+        sources=lambda w: DESIGN[w.sample]['sources'],
+        references=lambda w: [str((Path(DESIGN[w.sample]['sources']).parent / s['fasta']).resolve())
+                              for s in json.loads(Path(DESIGN[w.sample]['sources']).read_text())['sources']],
+        settings='configs/simulation.yaml'
+    output:
+        r1=ROOT + '/{sample}/simulation/reads_R1.fastq.gz',
+        r2=ROOT + '/{sample}/simulation/reads_R2.fastq.gz',
+        truth=ROOT + '/{sample}/simulation/truth/sources.fasta'
+    params:
+        seed=lambda w: DESIGN[w.sample]['seed'],
+        directory=lambda w: f'{ROOT}/{w.sample}/simulation'
+    shell:
+        'python -m nexvirome2 simulate --sources {input.sources:q} --config {input.settings:q} '
+        '--seed {params.seed} --output {params.directory:q}'
+
+rule assemble:
+    input:
+        r1=rules.simulate.output.r1, r2=rules.simulate.output.r2, settings='configs/assembly.yaml'
+    output:
+        ROOT + '/{sample}/assemblies/{assembler}/result.json'
+    wildcard_constraints:
+        assembler='metaspades|megahit'
+    params:
+        directory=lambda w: f'{ROOT}/{w.sample}/assemblies/{w.assembler}',
+        memory_gb=config.get('memory_gb',16)
+    threads: config.get('threads', 4)
+    resources:
+        mem_mb=config.get('memory_gb', 16) * 1024
+    shell:
+        'python -m nexvirome2 assemble --assembler {wildcards.assembler} '
+        '--r1 {input.r1:q} --r2 {input.r2:q} --config {input.settings:q} '
+        '--threads {threads} --memory-gb {params.memory_gb} --output {params.directory:q}'
+
+rule correct:
+    input:
+        result=ROOT + '/{sample}/assemblies/metaspades/result.json',
+        r1=rules.simulate.output.r1, r2=rules.simulate.output.r2,
+        settings='configs/correction.yaml'
+    output:
+        corrected=ROOT + '/{sample}/correction/corrected.fasta',
+        control=ROOT + '/{sample}/correction/random_control.fasta'
+    params:
+        native=lambda w: f'{ROOT}/{w.sample}/assemblies/metaspades/native',
+        directory=lambda w: f'{ROOT}/{w.sample}/correction'
+    threads: config.get('threads', 4)
+    shell:
+        'python -m nexvirome2 correct --contigs {params.native:q}/contigs.fasta '
+        '--graph {params.native:q}/assembly_graph_with_scaffolds.gfa '
+        '--paths {params.native:q}/contigs.paths --r1 {input.r1:q} --r2 {input.r2:q} '
+        '--config {input.settings:q} --threads {threads} --output {params.directory:q}'
+
+def evaluation_dependency(w):
+    if w.method in ('corrected', 'random_control'):
+        return f'{ROOT}/{w.sample}/correction/' + ('corrected.fasta' if w.method == 'corrected' else 'random_control.fasta')
+    return f'{ROOT}/{w.sample}/assemblies/{w.method}/result.json'
+
+def evaluation_contigs(w):
+    if w.method in ('corrected', 'random_control'):
+        return evaluation_dependency(w)
+    filename = 'contigs.fasta' if w.method == 'metaspades' else 'final.contigs.fa'
+    return f'{ROOT}/{w.sample}/assemblies/{w.method}/native/{filename}'
+
+rule evaluate:
+    input:
+        dependency=evaluation_dependency,
+        truth=rules.simulate.output.truth,
+        settings='configs/evaluation.yaml'
+    output:
+        ROOT + '/{sample}/evaluation/{method}/metrics.json'
+    wildcard_constraints:
+        method='metaspades|megahit|corrected|random_control'
+    params:
+        contigs=evaluation_contigs,
+        directory=lambda w: f'{ROOT}/{w.sample}/evaluation/{w.method}'
+    threads: config.get('threads', 4)
+    shell:
+        'python -m nexvirome2 evaluate --contigs {params.contigs:q} --sources {input.truth:q} '
+        '--config {input.settings:q} --threads {threads} --output {params.directory:q}'
+
+rule report:
+    input:
+        metrics=expand(ROOT + '/{sample}/evaluation/{method}/metrics.json', sample=SAMPLES, method=METHODS),
+        settings='configs/evaluation.yaml'
+    output:
+        config['report'] + '/metrics.tsv'
+    params:
+        root=ROOT, directory=config['report']
+    shell:
+        'python -m nexvirome2 report --runs {params.root:q} --config {input.settings:q} --output {params.directory:q}'

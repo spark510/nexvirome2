@@ -1,0 +1,4 @@
+min_length: 50
+min_mean_quality: 20
+max_n_fraction: 0.1
+remove_host: false

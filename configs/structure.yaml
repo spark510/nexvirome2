@@ -1,0 +1,13 @@
+threads: 4
+genetic_code: 1
+min_aa: 75
+max_unknown_fraction: 0.1
+search_evalue: 10
+max_hits: 100
+evalue: 0.001
+min_coverage: 0.5
+competitive_fraction: 0.95
+close_identity: 0.8
+flank_orfs: 2
+min_confidence: 0.5
+min_viral_orfs: 2

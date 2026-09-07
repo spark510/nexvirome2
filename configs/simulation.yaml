@@ -1,0 +1,5 @@
+seed: 20260905
+read_length: 150
+insert_mean: 300
+insert_sd: 30
+profile: HS25

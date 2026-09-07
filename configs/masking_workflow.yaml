@@ -1,0 +1,9 @@
+reference: data/refseq/reference.fasta
+taxonomy: data/taxonomy/taxonomy.tsv
+# Queries must be generated from the unmasked original reference.
+queries: data/masking/queries.fasta
+truth: data/masking/truth.tsv
+settings: configs/masking.yaml
+output: runs/masking
+# Optional validated mask.json imported by `mask import`:
+# legacy_mask: data/masking/legacy/mask.json

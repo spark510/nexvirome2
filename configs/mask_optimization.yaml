@@ -1,0 +1,4 @@
+partition: development
+min_units: 3
+max_correct_loss: 0.02
+max_breadth_loss: 0.02

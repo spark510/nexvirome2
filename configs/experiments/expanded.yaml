@@ -1,0 +1,4 @@
+partition: development
+coverages: [10, 50, 100]
+ratios: [1, 10, 100]
+seeds: [20260905, 20260906, 20260907]

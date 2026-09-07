@@ -1,0 +1,6 @@
+k: 31
+min_length_bp: 1000
+complete_only: false
+flank_bp: 150
+high_risk_pairs: 2
+threads: 4

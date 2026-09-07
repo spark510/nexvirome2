@@ -1,0 +1,6 @@
+threads: 4
+window_bp: 500
+step_bp: 500
+min_mapq: 20
+coverage_change: 0.5
+composition_change: 0.5

@@ -1,0 +1,32 @@
+# Run: conda env create -f environments/extended.yaml
+name: nexvirome2-extended
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  - python=3.12
+  - pip
+  - setuptools>=68
+  - wheel
+  - pyyaml>=6
+  - pandas>=2
+  - matplotlib-base>=3.8
+  - pytest>=8
+  - snakemake-minimal>=8
+  - spades>=4
+  - megahit=1.2.9
+  - art
+  - blast>=2.15
+  - bowtie2>=2.5
+  - samtools>=1.19
+  - scikit-learn>=1.4
+  - biopython>=1.83
+  - mmseqs2
+  - foldseek
+  - folddisco
+  - foldmason
+  - genomad
+  - checkv
+  - pip:
+      - -e ..

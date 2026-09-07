@@ -1,0 +1,6 @@
+reference: tests/fixtures/masking.reference.fasta
+taxonomy: tests/fixtures/masking.taxonomy.tsv
+queries: tests/fixtures/masking.queries.fasta
+truth: tests/fixtures/masking.truth.tsv
+settings: tests/fixtures/masking.settings.yaml
+output: runs/masking-fixture
