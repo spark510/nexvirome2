@@ -1,5 +1,9 @@
 # NexVirome2
 
+Bounded graph paths can now be reconstructed with `nexvirome2 reconstruct run`.
+See the [reconstruction guide](docs/reconstruction.md) for report-only/apply modes,
+paired-read validation, coordinate maps and remaining research limitations.
+
 The [integrated implementation plan](docs/implementation_plan.md) tracks reference masking
 refinement, assembly correction, conserved-region reuse, and all audited remaining work.
 It distinguishes implemented prototypes from missing functionality and conditional research.

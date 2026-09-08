@@ -4,7 +4,7 @@ from ..common import dump, fasta, stage, table, write_fasta
 from ..graph import Graph, candidates, contig_paths
 from ..evidence.proposals import proposals
 from ..runtime import CommandRunner
-from .support import pair_evidence
+from .support import pair_evidence, validate_score_margin
 from .splitting import split_sequences
 from .policy import EvidencePolicy, CorrectionPolicy
 from .local_paths import build_local_paths
@@ -21,6 +21,7 @@ class CorrectionService:
     def run(self, settings, contigs, graph_file, paths_file, r1, r2, output, proposal_files=()):
         command, version = self.command, self.version
         policy = self.policy or EvidencePolicy(settings)
+        validate_score_margin(settings.get('score_margin', 1))
         with stage(output, settings, [contigs, graph_file, paths_file, r1, r2, *proposal_files]) as (out, manifest):
             sequences = fasta(contigs)
             extra = proposals(proposal_files,sequences)

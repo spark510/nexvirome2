@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "purpose": "diagnostic_read_overlap_not_automatic_trimming",
+  "entries": [
+    {
+      "id": "truseq_r1",
+      "family": "truseq",
+      "mate": "R1",
+      "sequence": "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA",
+      "orientation": "read_5to3",
+      "expected_location": "3prime_readthrough",
+      "source_url": "https://knowledge.illumina.com/library-preparation/general/library-preparation-general-reference_material-list/000001314",
+      "retrieved_date": "2026-09-08"
+    },
+    {
+      "id": "truseq_r2",
+      "family": "truseq",
+      "mate": "R2",
+      "sequence": "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT",
+      "orientation": "read_5to3",
+      "expected_location": "3prime_readthrough",
+      "source_url": "https://knowledge.illumina.com/library-preparation/general/library-preparation-general-reference_material-list/000001314",
+      "retrieved_date": "2026-09-08"
+    },
+    {
+      "id": "nextera_dna_prep",
+      "family": "nextera_dna_prep",
+      "mate": "both",
+      "sequence": "CTGTCTCTTATACACATCT",
+      "orientation": "read_5to3",
+      "expected_location": "3prime_readthrough",
+      "source_url": "https://knowledge.illumina.com/library-preparation/general/library-preparation-general-reference_material-list/000001314",
+      "retrieved_date": "2026-09-08"
+    },
+    {
+      "id": "stranded_rna_ligation",
+      "family": "stranded_rna_ligation",
+      "mate": "both",
+      "sequence": "ACTGTCTCTTATACACATCT",
+      "orientation": "read_5to3",
+      "expected_location": "3prime_readthrough",
+      "source_url": "https://knowledge.illumina.com/library-preparation/general/library-preparation-general-reference_material-list/000001314",
+      "retrieved_date": "2026-09-08"
+    },
+    {
+      "id": "truseq_small_rna",
+      "family": "truseq_small_rna",
+      "mate": "both",
+      "sequence": "TGGAATTCTCGGGTGCCAAGG",
+      "orientation": "read_5to3",
+      "expected_location": "3prime_readthrough",
+      "source_url": "https://knowledge.illumina.com/library-preparation/general/library-preparation-general-reference_material-list/000001314",
+      "retrieved_date": "2026-09-08"
+    }
+  ],
+  "excluded": [
+    "PCR-Free tagmentation dual-sequence policy requires kit-specific configuration",
+    "index-specific full oligos",
+    "PCR primers and Trimmomatic palindrome prefixes"
+  ]
+}

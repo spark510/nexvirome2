@@ -1,0 +1,10 @@
+{
+  "schema": 1,
+  "prepared_date": "2026-09-08",
+  "files": {
+    "catalog.json": "72600357b315a91dbb9c84d93997ceb2710a7b1914716cc11f0122a30fe5d483",
+    "screen_R1.fasta": "377ec4fa44a68e22d7ec85af01990563faf3a2bbfbd6cd67bc23de1cba0bb481",
+    "screen_R2.fasta": "a33aad997ddb8cf70beed0abbbac39da4df537eb2ba2546843a7368c8e502c56"
+  },
+  "real_reads_analyzed": false
+}

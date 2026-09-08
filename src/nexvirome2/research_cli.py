@@ -2,6 +2,7 @@
 
 
 COMMANDS = {
+    'reconstruct': {'run':['contigs','graph','paths','r1','r2']},
     'taxonomy': {'build':['mapping','nodes']},
     'sharing': {'build':['reference','taxonomy'], 'align':['reference','taxonomy']},
     'mask': {'import':['reference','source'], 'export':['reference','mask'],
@@ -52,6 +53,9 @@ def register(commands):
 
 
 def dispatch(args,settings):
+    if args.command=='reconstruct':
+        from .reconstruction import reconstruct
+        return reconstruct(settings,args.contigs,args.graph,args.paths,args.r1,args.r2,args.output)
     if args.command=='taxonomy':
         from .taxonomy import build
         build(settings,args.mapping,args.nodes,args.output,args.merged,args.deleted)

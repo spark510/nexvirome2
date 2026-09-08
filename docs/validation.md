@@ -1,5 +1,27 @@
 # Validation record — 2026-09-06
 
+## Graph audit repairs - 2026-09-08
+
+Complete suite: **161 passed**, 51.30 seconds (`.test-tmp-graph-audit-fixed`).
+New regressions cover equal-score distinct CIGARs sharing fragment endpoints,
+lower-score alternatives, identical alignment duplicates, supported detours around
+direct edges in both orientations, and null export of invalid/gapped/mismatched
+original paths. Mate-level alignment identity is separate from fragment endpoint
+deduplication. Exported paths are checked against output FASTA and accompanied by
+`output_path_validation.json`. These are synthetic checks; external mapping and
+natural-data accuracy remain separately unvalidated.
+
+## Bounded graph reconstruction - 2026-09-08
+
+The full suite passed **152 tests** in 29.76 seconds (`.test-tmp-reconstruction-verified`).
+Reconstruction tests exercise actual GFA spelling with synthetic mapping records:
+length-changing replacements, report-only mode, tied/insufficient support,
+reverse overlap coordinates, retained repeated-node coordinates, search limits,
+mismatched input paths, conflicting rewrites and failed remapping rollback.
+Bowtie2 execution is injected in these tests, not run on a Linux server.
+`workflows/reconstruction.smk` passed a two-job Snakemake dry-run on fixture inputs.
+Natural-data reconstruction accuracy and runtime remain unvalidated.
+
 Verified in the Windows development workspace using Python 3.12.12:
 
 - 26 pytest tests passed, covering competitive-alignment calls, graph orientation and
@@ -134,6 +156,12 @@ not a new external-tool or natural-data performance benchmark. See
 [the updated audit](bug_audit_20260907.md).
 
 ## Installation channel checks - 2026-09-07
+
+Follow-up SAM repairs passed the complete suite: **137 tests**, 34.56 seconds,
+`.test-tmp-pair-validation`. The 20 new cases cover invalid margins, incomplete or
+non-finite competing scores, flagged fragment exclusion, interleaved SAM grouping,
+endpoint deduplication and empty audit output. These synthetic checks do not replace
+a Linux external-tool run or a large-data memory benchmark.
 
 - Full regression suite: **117 passed**, 39.64 seconds, `.test-tmp-install-channels`.
 - `scripts/install.py` command construction was checked for base, extended and dry-run

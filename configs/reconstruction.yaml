@@ -1,0 +1,10 @@
+# Conservative research mode. Set apply: true to emit supported replacements.
+apply: false
+min_fragments: 3
+alternative_fraction: 0.9
+score_margin: 1
+max_nodes: 8
+max_paths: 32
+max_states: 4096
+max_fragment_bp: 600
+threads: 4

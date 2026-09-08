@@ -29,3 +29,5 @@ dist/
 data/designs/
 data/refseq_accessions.txt
 !tests/fixtures/**
+!configs/adapters/*.fasta
+data/adapters/

@@ -1,5 +1,8 @@
 # NexVirome2 통합 구현 계획 및 요구사항 대조
 
+추가 구현 계획: [자동 숙주 경쟁 판정·NMF 성분 해석·graph 재구성](host_latent_reconstruction_plan.md).
+새 CLI, 모듈 계약, 검증 기준, 국소 phasing 범위와 최종 활성화 조건을 정의한다.
+
 갱신: 2026-09-07. 이 문서는 앞으로 구현할 작업의 기준이다. 실행 가능한 현재 기능은
 [implementation.md](implementation.md), 확장 기능은 [extensions.md](extensions.md), 검증 이력은
 [validation.md](validation.md)에 따로 기록한다. 아래 `미구현`·`부분 구현`·`후속`은 완료로 간주하지 않는다.

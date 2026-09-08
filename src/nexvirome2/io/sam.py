@@ -26,9 +26,12 @@ def sam_records(path):
                 yield f
 
 
-def alignment_score(record):
+def alignment_score(record, tag='AS'):
     tags = {v.split(':',2)[0]:v.split(':',2)[2] for v in record[11:]}
-    value = float(tags['AS']) if 'AS' in tags else None
+    try:
+        value = float(tags[tag]) if tag in tags else None
+    except (ValueError, TypeError):
+        return None
     return value if value is not None and math.isfinite(value) else None
 
 
@@ -86,8 +89,10 @@ def measure_sam(path, target, regions, min_mapq=20):
             valid = primary[0][2] == primary[1][2] and {int(f[1]) & (64|128) for f in primary} == {64,128}
             for f in primary:
                 tags = {v.split(':',2)[0]:v.split(':',2)[2] for v in f[11:]}
-                if 'XS' in tags and 'AS' in tags and float(tags['XS']) >= float(tags['AS']):
-                    valid = False
+                if 'XS' in tags:
+                    best, alternative = alignment_score(f), alignment_score(f, 'XS')
+                    if best is None or alternative is None or alternative >= best:
+                        valid = False
             if valid and competing_alignment(primary, records):
                 valid = False
         if not valid:
